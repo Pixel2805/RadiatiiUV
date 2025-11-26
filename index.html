@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radiațiile Ultraviolete</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            width: 90%;
+            max-width: 1200px;
+            height: 85vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 60px;
+            display: none;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .slide.active {
+            display: flex;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide h1 {
+            color: #667eea;
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .slide h2 {
+            color: #764ba2;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+
+        .slide h3 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .content p, .content li {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .content ul {
+            margin-left: 30px;
+            margin-top: 15px;
+        }
+
+        .content li {
+            margin-bottom: 12px;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .box {
+            background: linear-gradient(135deg, #667eea15, #764ba215);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .controls button {
+            background: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .controls button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            background: #667eea;
+            color: white;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            color: #999;
+            font-size: 1em;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #ffd70040 0%, #ffd70040 100%);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .spectrum-bar {
+            height: 40px;
+            background: linear-gradient(to right, #8b00ff, #4b0082, #0000ff, #00ff00, #ffff00, #ff7f00, #ff0000);
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .title-slide {
+            justify-content: center;
+            text-align: center;
+        }
+
+        .title-slide h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .title-slide p {
+            font-size: 1.5em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Titlu -->
+        <div class="slide active title-slide">
+            <div>
+                <h1>☀️ RADIAȚIILE ULTRAVIOLETE</h1>
+                <p><strong>Beneficii, riscuri și protecție</strong></p>
+                <div style="margin-top: 250px; font-size: 2em;"><strong>Realizat: </strong>Podoleanu Valentina</div>
+                <div style="margin-top: 10px; font-size: 2em;"><strong>Coordonator: </strong>Malic Nina</div>
+            </div>
+            <div class="slide-number">1 / 8</div>
+        </div>
+
+        <!-- Slide 2: Ce sunt radiațiile UV -->
+        <div class="slide">
+            <h2>Ce sunt radiațiile ultraviolete?</h2>
+            <div class="content">
+                <p>Radiațiile ultraviolete (UV) sunt un tip de <span class="highlight">radiație electromagnetică</span> emisă de Soare, cu lungimi de undă mai scurte decât lumina vizibilă, dar mai lungi decât razele X.</p>
+                
+                <div class="spectrum-bar"></div>
+                
+                <h3>Caracteristici principale:</h3>
+                <ul>
+                    <li><strong>Lungime de undă:</strong> 10-400 nanometri (nm)</li>
+                    <li><strong>Invizibile</strong> pentru ochiul uman</li>
+                    <li><strong>Energie mare</strong> - mai energetice decât lumina vizibilă</li>
+                    <li>Reprezintă aproximativ <strong>10% din radiația solară</strong> totală</li>
+                </ul>
+
+                <div class="box" style="margin-top: 25px; background: #f0f8ff; border-left-color: #4169e1;">
+                    <h3 style="color: #4169e1;">Formula energiei fotonului UV:</h3>
+                    <p style="font-size: 1.4em; text-align: center; margin: 20px 0; font-family: 'Courier New', monospace;">
+                        E = h × ν = h × c / λ
+                    </p>
+                    <p style="font-size: 0.95em;">unde: <strong>E</strong> = energia (jouli), <strong>h</strong> = constanta Planck (6.626 × 10⁻³⁴ J·s), <strong>ν</strong> = frecvența, <strong>c</strong> = viteza luminii (3 × 10⁸ m/s), <strong>λ</strong> = lungimea de undă</p>
+                </div>
+
+               
+            </div>
+            <div class="slide-number">2 / 8</div>
+        </div>
+
+        <!-- Slide 3: Tipuri de radiații UV -->
+        <div class="slide">
+            <h2>Tipuri de radiații ultraviolete</h2>
+            <div class="content">
+                <div class="two-columns">
+                    <div class="box">
+                        <h3 style="color: #dc3545;">UVA - Radiațiile Ultraviolete A (315-400 nanometri)</h3>
+                        <ul>
+                            <li>Cea mai mare parte (95%)</li>
+                            <li>Penetrează profund în piele</li>
+                            <li>Cauzează îmbătrânirea pielii</li>
+                            <li>Traversează geamurile</li>
+                            <li>Prezentă tot anul</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <h3 style="color: #fd7e14;">UVB - Radiațiile Ultraviolete B (280-315 nanometri)</h3>
+                        <ul>
+                            <li>Aproximativ 5% din UV</li>
+                            <li>Afectează stratul superficial</li>
+                            <li>Cauzează arsuri și bronzare</li>
+                            <li>Intensitate variabilă (sezon/oră)</li>
+                            <li>Stimulează vitamina D</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="box" style="margin-top: 25px; background: #e3f2fd; border-left-color: #2196f3;">
+                    <h3 style="color: #1976d2;">UVC - Radiațiile Ultraviolete C (100-280 nanometri)</h3>
+                    <ul>
+                        <li>Cea mai periculoasă formă</li>
+                        <li><strong>Complet blocată de stratul de ozon</strong></li>
+                        <li>Nu ajunge la suprafața Pământului</li>
+                        <li>Utilizată în lămpi de sterilizare</li>
+                    </ul>
+                </div>
+                <figure style="margin-top:16px;">
+  <img src="https://media.csid.ro/zqaS6NCGngv4Cwjcnvj70FqeBWc=/700x700/smart/filters:contrast(5):format(webp):quality(100)/https%3A%2F%2Fwww.csid.ro%2Fwp-content%2Fuploads%2F2021%2F02%2FUVA-vs-UVB-e1612210218539.jpg" alt="Patrunderea in corp a razelor UV" style="display:block; margin:0 auto; width:40%; max-width:400px; height:auto;">
+  <figcaption style="display:block; margin:0 auto; width:40%; max-width:400px; height:auto;"><strong>Exemplu: pătrunderea razelor UVB și UVA în corp.</strong></figcaption>
+</figure>
+            </div>
+            <div class="slide-number">3 / 8</div>
+        </div>
+
+        <!-- Slide 4: Efecte benefice -->
+        <div class="slide">
+            <h2>✅ Efecte benefice ale radiațiilor UV</h2>
+            <div class="content">
+                <h3>1. Producerea vitaminei D</h3>
+                <p>Radiațiile UVB stimulează sinteza vitaminei D în piele, esențială pentru:</p>
+                <ul>
+                    <li>Sănătatea oaselor și absorbția calciului</li>
+                    <li>Funcționarea sistemului imunitar</li>
+                    <li>Sănătatea cardiovasculară</li>
+                    <li>Prevenirea anumitor boli (rahitism, osteoporoză)</li>
+                </ul>
+
+                <div class="box" style="background: #fff8dc; border-left-color: #ffa500;">
+                    <h3 style="color: #ff8c00;">Reacția de sinteză a vitaminei D:</h3>
+                    <p style="font-size: 1.3em; text-align: center; margin: 15px 0; font-family: 'Courier New', monospace;">
+                       <strong>7-Dehidrocolesterol + UVB (290-315 nm) → Pre-vitamina D₃ → Vitamina D₃</strong>
+                    </p>
+                    <p style="font-size: 0.95em;"><strong>nm = </strong>nanometri,       <strong>UVB = </strong>Radiațiile Ultraviolete B</p>
+                    
+                </div>
+
+                <h3>2. Efecte psihologice pozitive</h3>
+                <ul>
+                    <li>Îmbunătățirea dispoziției și reducerea depresiei</li>
+                    <li>Stimularea producției de serotonină</li>
+                    <li>Reglarea ciclului somn-veghe</li>
+                </ul>
+
+                <h3>3. Tratamente medicale</h3>
+                <ul>
+                    <li>Fototerapie pentru psoriazis și eczemă</li>
+                    <li>Tratamentul icterului neonatal</li>
+                    <li>Terapii pentru anumite afecțiuni dermatologice</li>
+                </ul>
+
+                <div class="box" style="margin-top: 20px;">
+                    <strong>Recomandare:</strong> 10-30 de minute de expunere la soare, 2-3 ori pe săptămână, sunt suficiente pentru producerea vitaminei D.
+                </div>
+            </div>
+            <div class="slide-number">4 / 8</div>
+        </div>
+
+        <!-- Slide 5: Efecte nocive -->
+        <div class="slide">
+            <h2>⚠️ Efecte nocive ale radiațiilor UV</h2>
+            <div class="content">
+                <div class="warning-box">
+                    <strong>ATENȚIE!</strong> Expunerea excesivă la radiațiile UV poate avea consecințe grave asupra sănătății.
+                </div>
+
+                <h3>Efecte asupra pielii:</h3>
+                <ul>
+                    <li><strong>Arsuri solare</strong> - roșeață, durere, vezicule</li>
+                    <li><strong>Îmbătrânirea prematură</strong> - riduri, pete pigmentare</li>
+                    <li><strong>Cancer de piele</strong> - melanom, carcinom bazocelular</li>
+                    <li><strong>Alterarea ADN-ului celular</strong></li>
+                </ul>
+
+                <h3>Efecte asupra ochilor:</h3>
+                <ul>
+                    <li><strong>Cataractă</strong> - opacifierea cristalinului</li>
+                    <li><strong>Degenerescență maculară</strong></li>
+                    <li><strong>Fotokeratită</strong> - "arsură solară" a ochilor</li>
+                    <li><strong>Pterigion</strong> - creștere anormală pe cornee</li>
+                </ul>
+
+                <h3>Alte efecte:</h3>
+                <ul>
+                    <li>Slăbirea sistemului imunitar</li>
+                    <li>Deteriorarea colagenului și elastinei</li>
+                    <li>Sensibilizare la anumite medicamente</li>
+                </ul>
+            </div>
+            <div class="slide-number">5 / 8</div>
+        </div>
+
+        <!-- Slide 6: Indicele UV -->
+        <div class="slide">
+            <h2>📊 Indicele UV și interpretarea lui</h2>
+            <div class="content">
+                <p>Indicele UV (UVI) măsoară intensitatea radiațiilor UV la suprafața Pământului pe o scară de la 0 la 11+.</p>
+
+                <div style="margin: 30px 0;">
+                    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; text-align: center;">
+                        <div style="background: #289500; color: white; padding: 15px; border-radius: 10px; font-weight: bold;">
+                            1-2<br>SCĂZUT
+                        </div>
+                        <div style="background: #f7e400; color: black; padding: 15px; border-radius: 10px; font-weight: bold;">
+                            3-5<br>MODERAT
+                        </div>
+                        <div style="background: #f85900; color: white; padding: 15px; border-radius: 10px; font-weight: bold;">
+                            6-7<br>RIDICAT
+                        </div>
+                        <div style="background: #d8001d; color: white; padding: 15px; border-radius: 10px; font-weight: bold;">
+                            8-10<br>FOARTE RIDICAT
+                        </div>
+                        <div style="background: #6b49c8; color: white; padding: 15px; border-radius: 10px; font-weight: bold;">
+                            11+<br>EXTREM
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Factori care influențează intensitatea UV:</h3>
+                <div class="two-columns">
+                    <div class="box">
+                        <ul>
+                            <li><strong>Ora zilei</strong> - maxim între 10:00-16:00</li>
+                            <li><strong>Sezonul</strong> - mai intens vara</li>
+                            <li><strong>Latitudinea</strong> - mai intens la ecuator</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <ul>
+                            <li><strong>Altitudinea</strong> - crește cu 10-12% la fiecare 1000m</li>
+                            <li><strong>Norii</strong> - pot reduce, dar nu elimină UV</li>
+                            <li><strong>Suprafețele reflectorizante</strong> - zăpadă, apă, nisip</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="box" style="margin-top: 20px; background: #e8f5e9; border-left-color: #4caf50;">
+                    <h3 style="color: #2e7d32;">Formula intensității UV cu altitudinea:</h3>
+                    <p style="font-size: 1.3em; text-align: center; margin: 15px 0; font-family: 'Courier New', monospace;">
+                        I(h) = I₀ × (1 + α × h/1000)
+                    </p>
+                    <p style="font-size: 0.95em;">unde: <strong>I(h)</strong> = intensitatea la altitudinea h, <strong>I₀</strong> = intensitatea la nivelul mării, <strong>α</strong> = 0.10-0.12 (factor de creștere 10-12%), <strong>h</strong> = altitudinea în metri</p>
+                </div>
+            </div>
+            <div class="slide-number">6 / 8</div>
+        </div>
+
+        <!-- Slide 7: Metode de protecție -->
+        <div class="slide">
+            <h2>🛡️ Metode de protecție împotriva radiațiilor UV</h2>
+            <div class="content">
+                <h3>1. Protecție solară (crema SPF)</h3>
+                <ul>
+                    <li>Folosiți creme cu <strong>SPF 30 sau mai mare</strong></li>
+                    <li>Aplicați cu 20-30 minute înainte de expunere</li>
+                    <li>Reaplicați la fiecare 2 ore sau după înot</li>
+                    <li>Alegeți produse cu protecție UVA și UVB</li>
+                </ul>
+                
+
+                <div class="box" style="background: #fce4ec; border-left-color: #e91e63;">
+                    <h3 style="color: #c2185b;">Formula SPF (Sun Protection Factor):</h3>
+                    <p style="font-size: 1.3em; text-align: center; margin: 15px 0; font-family: 'Courier New', monospace;">
+                        <strong>SPF = Doza minimă eritemală (cu protecție) / Doza minimă eritemală (fără protecție)</strong>
+                    </p>
+                    <p style="font-size: 0.95em;"><strong>Exemplu:</strong> SPF 30 înseamnă că poți sta la soare de 30 de ori mai mult decât fără protecție înainte de a te arde.</p>
+                    <p style="font-size: 1.2em; text-align: center; margin: 10px 0; font-family: 'Courier New', monospace;">
+                       <strong>Protecție UV (%) = (1 - 1/SPF) × 100%</strong>
+                    </p>
+                    <p style="font-size: 0.95em;"><strong>SPF 15 = 93.3%, SPF 30 = 96.7%, SPF 50 = 98%</strong></p>
+                </div>
+
+                <h3>2. Îmbrăcăminte protectoare</h3>
+                <ul>
+                    <li>Purtați haine lungi din țesături strânse</li>
+                    <li>Folosiți pălării cu boruri largi (7-10 cm)</li>
+                    <li>Alegeți îmbrăcăminte cu factor UPF</li>
+                    <li>Culori închise oferă protecție mai bună</li>
+                </ul>
+
+                <h3>3. Ochelari de soare</h3>
+                <ul>
+                    <li>Verificați ca ochelarii să blocheze <strong>99-100% din UVA și UVB</strong></li>
+                    <li>Alegeți rame mari sau înfășurătoare</li>
+                    <li>Lentile polarizate pentru confort suplimentar</li>
+                </ul>
+
+                <h3>4. Comportament prudent</h3>
+                <ul>
+                    <li><strong>Evitați expunerea între orele 10:00-16:00</strong></li>
+                    <li>Căutați umbră când este posibil</li>
+                    <li>Fiți extra-atenți la suprafețe reflectorizante</li>
+                    <li>Nu folosiți paturi de bronzat artificial</li>
+                </ul>
+            </div>
+            <div class="slide-number">7 / 8</div>
+        </div>
+
+        <!-- Slide 8: Concluzii -->
+        <div class="slide">
+            <h2>📝 Concluzii</h2>
+            <div class="content">
+                <div class="box" style="background: linear-gradient(135deg, #667eea20, #764ba220); padding: 30px; margin-bottom: 25px;">
+                    <h3 style="text-align: center; font-size: 1.8em; margin-bottom: 20px;">Echilibrul este esențial!</h3>
+                    <p style="text-align: center; font-size: 1.3em;"><strong>Radiațiile UV sunt atât benefice, cât și periculoase - cheia constă în expunerea moderată și protecția adecvată.</strong></p>
+                </div>
+
+                <h3>Recomandări finale:</h3>
+                <ul>
+                    <li>✅ Bucurați-vă de soare <strong>cu moderație</strong></li>
+                    <li>✅ Folosiți <strong>întotdeauna protecție solară</strong> adecvată</li>
+                    <li>✅ Verificați <strong>indicele UV</strong> zilnic</li>
+                    <li>✅ Fiți <strong>extra-atenți</strong> cu copiii și persoanele cu pielea sensibilă</li>
+                    <li>✅ Consultați <strong>medicul dermatolog</strong> pentru controlul aluniţelor</li>
+                    <li>✅ Educați <strong>copiii și adolescenții</strong> despre importanța protecției solare</li>
+                </ul>
+
+                <div class="warning-box" style="margin-top: 30px;">
+                    <strong>AMINTIȚI-VĂ:</strong> Chiar și în zile înnourate sau răcoroase, până la 80% din radiațiile UV pot pătrunde prin nori. Protejați-vă indiferent de vreme!
+                </div>
+
+                <p style="text-align: center; margin-top: 40px; font-size: 2em;">🌞 Soare sănătos = Protecție inteligentă! 🌞</p>
+            </div>
+            <div class="slide-number">8 / 8</div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button onclick="previousSlide()">← Anterior</button>
+        <button onclick="nextSlide()">Următorul →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Navigare cu tastele săgeți
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+    </script>
+</body>
+</html>
